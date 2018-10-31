@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: springwebapp
-        image: registry.hub.docker.com/jibijose/springwebapp
+        image: registry.hub.docker.com/jibijose/springwebapp:1.0
         ports:
         - containerPort: 8080
         livenessProbe:
