@@ -27,8 +27,45 @@ However any version of java 8 and any not so old versions of virtualbox and vagr
 ## Create kubernetes cluster and deploy docker image
 
 ### Create and deploy cluster
+To create and start cluster having 1 master on k8s1 and 2 workers (k8s2 and k8s3), ssh to k8s1 and run `/vagrant/scripts/bootstrap_deployment.sh` as root user
+
+```
+root@k8s1:~# /vagrant/scripts/bootstrap_deployment.sh
+service "springwebapp-service" deleted
+deployment.extensions "springwebapp-deployment" deleted
+service/springwebapp-service created
+deployment.extensions/springwebapp-deployment created
+```
 ### Test cluster
+Check kubernetes cluster services, deployments, pods and nodes using below commands.   
+`kubectl get [service|deployment|pod|node]`
+
+After some time, pods list show available total count as 3 (as mentioned in deployment xml or command)   
+
+If something goes wrong you can describe each and find the reason   
+`kubectl describe [service|deployment|pod|node] [servicename|deploymentname|podname|nodename]`
+
 ### Test service
+`kubectl describe service springwebapp-service` shows details of service. Example output is shown below, however if you are following this then IPs might be different.   
+```
+root@k8s1:~# kubectl describe service springwebapp-service
+Name:              springwebapp-service
+Namespace:         default
+Labels:            <none>
+Annotations:       <none>
+Selector:          app=springwebapp
+Type:              ClusterIP
+IP:                10.99.19.6
+Port:              http  80/TCP
+TargetPort:        8080/TCP
+Endpoints:         10.244.0.9:8080,10.244.1.9:8080,10.244.2.6:8080
+Session Affinity:  None
+Events:            <none>
+```
+
+To check service and endpoints you may use curl and see whether underlying java spring web responds properly.   
+Service Check: `curl -v http://10.99.19.6:80/health`   
+Endpoints Check: `curl -v http://10.244.X.X:8080/health`   
 
 ## Troubleshooting
 
