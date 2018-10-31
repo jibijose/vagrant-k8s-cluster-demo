@@ -8,17 +8,29 @@ This project contains all files needed to bring up a kubernetes vagrant cluster 
 ### Prerequisites
 You need the following installed to use this playground.
 - `Java`, java 8u181 is used.
+- `Maven`, 3.5.3 is used
 - `VirtualBox`, 5.2.12 is used
 - `Vagrant`, version 2.1.1 is used.
+- `Docker`, Used 18.03.0 windows 7 toolbox version. If you are on Windows 10 enterprise, mac or linux then you may get appropriate version of docker installed.
+- `Git`, 2.15.1.2 is used. This also install git bash which can be used to run scripts on windows.
+- `Host`, Windows 7 64Bit enterprise. However you may use any operating system.
 
 However any version of java 8 and any not so old versions of virtualbox and vagrant should work without any trouble.
 
 ## Build project, create, push docker image
 
+Checkout this project   
+`git clone https://github.com/jibijose/vagrant-k8s-cluster-demo.git`   
+
 ### Build java project
+Change directory to springwebapp and run `mvn clean package`. This should package jar into target folder.
+
 ### Test java project
-### Create docker image
-### Push docker image
+Optionally you test java project by running and consuming its endpoint. To run use `java -jar target/springwebapp-1.0.0.jar` and then consume it with any client (ex: `curl -v http://localhost:8080/health`).
+Close running java process if all look good.   
+
+### Create and push docker image
+Building jar, creating and pushing docker image are all scripted in `springwebapp/scripts/build.sh`
 
 ## Build base vagrant box
 
