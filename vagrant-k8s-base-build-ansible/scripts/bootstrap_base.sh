@@ -7,7 +7,7 @@ sudo sh -c 'echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/
 sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
-sudo apt-get install -y kubernetes-cni
+sudo apt-get install -y docker.io kubernetes-cni
 sudo systemctl enable kubelet
 sudo systemctl start kubelet
 
