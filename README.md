@@ -83,5 +83,6 @@ Service Check: `curl -v http://10.99.19.6:80/health`
 Endpoints Check: `curl -v http://10.244.X.X:8080/health`   
 
 ## Troubleshooting
+- Cntrl+M char: You may get this issue if you checkout on Windows host and run script on mounted /vagrant diectory. You can install `dos2unix` and run it to fix this.   
 
 ## FAQs
