@@ -30,13 +30,16 @@ Optionally you test java project by running and consuming its endpoint. To run u
 Close running java process if all look good.   
 
 ### Create and push docker image
-Building jar, creating and pushing docker image are all scripted in `springwebapp/scripts/build.sh`
+Building jar, creating and pushing docker image are all scripted in `springwebapp/build.sh`
 
 ## Build base vagrant box
+This step takes ubuntu base 18x image, adds and updates required softwares and then bundles a local vagrant box. This speeds up creation of vagrant boxes when we deploy a cluster and also becomes handy if you need to rebuild it many times.   
 
 ### Build vagrant box
+Change directory to vagrant-k8s-base-build. 
 
 ## Create kubernetes cluster and deploy docker image
+Run `vagrant-k8s-base-build/build.sh`. In case you need to change vagrant base image or add more softwares you may do that in 'vagrant-k8s-base-build/scripts/bootstrap_base.sh' file.  
 
 ### Create and deploy cluster
 To create and start cluster having 1 master on k8s1 and 2 workers (k8s2 and k8s3), ssh to k8s1 and run `/vagrant/scripts/bootstrap_deployment.sh` as root user
